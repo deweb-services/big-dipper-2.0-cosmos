@@ -66,6 +66,7 @@ export const useProfileDetails = () => {
       if (showProfile) {
         const dtagInput = router.query.dtag as string;
         if ((`@${state.desmosProfile.dtag}` !== dtagInput) && (`@${state.desmosProfile.dtag.toUpperCase()}` === dtagInput.toUpperCase())) {
+          console.log('im in here');
           router.push({ pathname: `/@${state.desmosProfile.dtag}` }, `/@${state.desmosProfile.dtag}`, { shallow: true });
         }
       } else {

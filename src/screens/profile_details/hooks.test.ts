@@ -3,18 +3,22 @@ import {
   act,
   cleanup,
 } from '@testing-library/react-hooks';
+import { wait } from '@tests/utils';
+// import nextRouter from 'next/router';
+// import { useRouter } from 'next/router';
+// import Router from 'next/router';
 import { useProfileDetails } from './hooks';
 
+const mockRouter = {
+  query: {
+    dtag: '@dtag',
+  },
+  replace: jest.fn(() => '/'),
+  push: jest.fn(),
+};
+
 jest.mock('next/router', () => ({
-  useRouter: () => ({
-    query: {
-      dtag: '@dtag',
-    },
-    replace: jest.fn(() => '/'),
-    push: jest.fn(({
-      _pathname,
-    }, path, _args) => path),
-  }),
+  useRouter: () => mockRouter,
 }));
 
 jest.mock('@hooks', () => ({
@@ -39,12 +43,15 @@ jest.mock('@hooks', () => ({
       }),
       formatDesmosProfile: jest.fn(() => {
         return ({
-          dtag: 'happieSa',
+          dtag: 'HappieSa',
           nickname: 'theHappySamoyed',
           imageUrl: 'https://ipfs.desmos.network/ipfs/Qmf48cpgi2zNiH24Vo1xtVsePUJx9665gtiRduVCvV5fFg',
           coverUrl: 'https://ipfs.desmos.network/ipfs/QmTvkdGrtBHHihjVajqqA2HAoHangeKR1oYbQWzasnPi7B',
           bio: 'hungry all the time',
-          connections: [],
+          connections: [{
+            network: 'native',
+            identifier: 'desmos1kmw9et4e99ascgdw0mmkt63mggjuu0xuqjx30w',
+          }],
         });
       }),
     });
@@ -54,11 +61,13 @@ jest.mock('@hooks', () => ({
 describe('hook: useProfileDetails', () => {
   it('correctly toggles profile open', async () => {
     const { result } = renderHook(() => useProfileDetails());
-    console.log(result.current.state, 'state');
+    console.log(result.current.state, 'wow');
+    // await wait();
+    // expect(Router.push).toHaveBeenCalledWith('/members');
     // test initial state
-    // expect(result.current.state.loading).toBe(true);
+    // expect(result.current.state.loading).toBe(false);
     // expect(result.current.state.exists).toBe(true);
-    // expect(result.current.state.desmosProfile).toBe(null);
+    // expect(result.current.state.desmosProfile.bio).toBe('hungry all the time');
 
     // render profile UI if shouldShowProfile returns true
     // const profileResult = renderHook(() => useDesmosProfile({
