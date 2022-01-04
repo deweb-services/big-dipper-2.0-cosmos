@@ -104,6 +104,7 @@ describe('hook: useProfileDetails', () => {
     });
     // does not call on forbole
     expect(mockRouter.push).toHaveBeenCalledTimes(1);
+    expect(result.current.state.desmosProfile.dtag).toBe('forbole');
   });
 });
 
