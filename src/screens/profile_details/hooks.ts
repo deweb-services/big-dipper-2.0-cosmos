@@ -46,6 +46,7 @@ export const useProfileDetails = () => {
   };
 
   useEffect(() => {
+    console.log('here');
     const regex = /^@/;
     const profileDtag = router.query.dtag as string;
     const regexCheck = regex.test(profileDtag);
@@ -62,11 +63,9 @@ export const useProfileDetails = () => {
   useEffect(() => {
     if (state.desmosProfile) {
       const showProfile = shouldShowProfile();
-
       if (showProfile) {
         const dtagInput = router.query.dtag as string;
         if ((`@${state.desmosProfile.dtag}` !== dtagInput) && (`@${state.desmosProfile.dtag.toUpperCase()}` === dtagInput.toUpperCase())) {
-          console.log('im in here');
           router.push({ pathname: `/@${state.desmosProfile.dtag}` }, `/@${state.desmosProfile.dtag}`, { shallow: true });
         }
       } else {
