@@ -11,7 +11,9 @@ jest.mock('next/router', () => ({
       dtag: '@dtag',
     },
     replace: jest.fn(() => '/'),
-    push: jest.fn(() => ('/@dtag')),
+    push: jest.fn(({
+      _pathname,
+    }, path, _args) => path),
   }),
 }));
 
