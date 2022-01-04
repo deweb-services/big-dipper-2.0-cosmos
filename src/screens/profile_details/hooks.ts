@@ -36,7 +36,6 @@ export const useProfileDetails = () => {
   });
 
   const shouldShowProfile = () => {
-    console.log(state.desmosProfile);
     const dtagConnections = state.desmosProfile.connections;
     const dtagConnectionsNetwork = dtagConnections.map((x) => { return x.identifier; });
     const chainPrefix = chainConfig.prefix.account;
@@ -52,7 +51,6 @@ export const useProfileDetails = () => {
     const regexCheck = regex.test(profileDtag);
     const configProfile = chainConfig.extra.profile;
     handleSetState(initialState);
-
     if (!regexCheck || !configProfile) {
       router.replace('/');
     }
