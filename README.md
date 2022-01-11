@@ -1,7 +1,18 @@
-# Big Dipper 2.0 ✨ (Cosmos Based Chains)
-Big Dipper is an open-source block explorer and token management tool serving over 10 proof-of-stake blockchains. It has been forked more than 100 times on GitHub and has served audiences from 140 countries and regions.
+# Big Dipper 2.0 for deweb
 
-**This repo contains the UI of big dipper 2.0 only**
+Env file (.env) example
+```
+NEXT_PUBLIC_GRAPHQL_URL=http://127.0.0.1:8282/v1/graphql
+NEXT_PUBLIC_GRAPHQL_WS=ws://127.0.0.1:8282/v1/graphql
+NODE_ENV=development
+PORT=8384
+NEXT_PUBLIC_URL=http://127.0.0.1:8384
+NEXT_PUBLIC_WS_CHAIN_URL=wss://127.0.0.1:8384/websocket
+NEXT_PUBLIC_CHAIN_STATUS=testnet
+```
+
+In this config example Hasura listen on port 8282, connection by http and ws (not secure). 
+Big Dipper UI is on port 8384
 
 ## Documentation
 Read our official documentation at [http://docs.bigdipper.live/](http://docs.bigdipper.live/)
